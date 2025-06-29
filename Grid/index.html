@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid - Exemples Pratiques</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Exemple 1: Grille de base */
+        .grid-basic {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 100px);
+            gap: 20px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .grid-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .grid-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Exemple 2: Layout de site */
+        .site-layout {
+            display: grid;
+            grid-template-areas: 
+                "header header header"
+                "sidebar main aside"
+                "footer footer footer";
+            grid-template-columns: 200px 1fr 200px;
+            grid-template-rows: 80px 1fr 100px;
+            min-height: 400px;
+            gap: 20px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .header { 
+            grid-area: header; 
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .sidebar { 
+            grid-area: sidebar; 
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+
+        .main { 
+            grid-area: main; 
+            background: linear-gradient(135deg, #ecf0f1 0%, #bdc3c7 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .aside { 
+            grid-area: aside; 
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+
+        .footer { 
+            grid-area: footer; 
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        /* Exemple 3: Galerie responsive */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .gallery-item {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Exemple 4: Grille avec grid-area */
+        .grid-areas {
+            display: grid;
+            grid-template-areas: 
+                "header header header"
+                "nav main sidebar"
+                "nav footer footer";
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-rows: 80px 200px 80px;
+            gap: 15px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .area-header {
+            grid-area: header;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .area-nav {
+            grid-area: nav;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+
+        .area-main {
+            grid-area: main;
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+
+        .area-sidebar {
+            grid-area: sidebar;
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+
+        .area-footer {
+            grid-area: footer;
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .site-layout {
+                grid-template-areas: 
+                    "header"
+                    "sidebar"
+                    "main"
+                    "aside"
+                    "footer";
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+
+            .grid-areas {
+                grid-template-areas: 
+                    "header"
+                    "nav"
+                    "main"
+                    "sidebar"
+                    "footer";
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        .code-example {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .code-example pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 CSS Grid - Exemples Pratiques</h1>
+        
+        <div class="section">
+            <h2>1. Grille de Base (3x2)</h2>
+            <p>Une grille simple avec 3 colonnes et 2 lignes :</p>
+            <div class="code-example">
+                <pre>grid-template-columns: repeat(3, 1fr);
+grid-template-rows: repeat(2, 100px);</pre>
+            </div>
+            <div class="grid-basic">
+                <div class="grid-item">1</div>
+                <div class="grid-item">2</div>
+                <div class="grid-item">3</div>
+                <div class="grid-item">4</div>
+                <div class="grid-item">5</div>
+                <div class="grid-item">6</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. Layout de Site Web</h2>
+            <p>Un layout complet avec header, sidebar, contenu principal, aside et footer :</p>
+            <div class="code-example">
+                <pre>grid-template-areas: 
+  "header header header"
+  "sidebar main aside"
+  "footer footer footer";</pre>
+            </div>
+            <div class="site-layout">
+                <header class="header">Header</header>
+                <nav class="sidebar">Sidebar</nav>
+                <main class="main">Contenu Principal</main>
+                <aside class="aside">Aside</aside>
+                <footer class="footer">Footer</footer>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. Galerie Responsive</h2>
+            <p>Une galerie qui s'adapte automatiquement à la taille de l'écran :</p>
+            <div class="code-example">
+                <pre>grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));</pre>
+            </div>
+            <div class="gallery">
+                <div class="gallery-item">Image 1</div>
+                <div class="gallery-item">Image 2</div>
+                <div class="gallery-item">Image 3</div>
+                <div class="gallery-item">Image 4</div>
+                <div class="gallery-item">Image 5</div>
+                <div class="gallery-item">Image 6</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. Grille avec Grid Areas</h2>
+            <p>Utilisation des grid-areas pour un layout complexe :</p>
+            <div class="code-example">
+                <pre>grid-template-areas: 
+  "header header header"
+  "nav main sidebar"
+  "nav footer footer";</pre>
+            </div>
+            <div class="grid-areas">
+                <div class="area-header">Header</div>
+                <div class="area-nav">Navigation</div>
+                <div class="area-main">Contenu Principal</div>
+                <div class="area-sidebar">Sidebar</div>
+                <div class="area-footer">Footer</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📱 Responsive Design</h2>
+            <p>Redimensionnez votre navigateur pour voir comment les layouts s'adaptent !</p>
+            <ul>
+                <li>Sur mobile, les layouts passent en colonne unique</li>
+                <li>La galerie s'adapte automatiquement</li>
+                <li>Les grid-areas se réorganisent</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>💡 Conseils d'Utilisation</h2>
+            <ul>
+                <li><strong>fr (fraction)</strong> : Pour des proportions flexibles</li>
+                <li><strong>minmax()</strong> : Pour des tailles minimales et maximales</li>
+                <li><strong>auto-fit/auto-fill</strong> : Pour des grilles responsives</li>
+                <li><strong>gap</strong> : Pour l'espacement entre éléments</li>
+                <li><strong>grid-areas</strong> : Pour des layouts sémantiques</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
